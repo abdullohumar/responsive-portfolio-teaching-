@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+:root {
+    --primary-color: #ff0080;
+    --secondary-color: #00ffff;
+    --accent-color: #00ff41;
+    --bg-color: #0a0a0a;
+    --surface-color: #1a1a1a;
+    --text-color: #ffffff;
+    --text-secondary: #b0b0b0;
+    --glow-color: var(--primary-color);
+}
+
+[data-theme="blue"] {
+    --primary-color: #0080ff;
+    --secondary-color: #ff00ff;
+    --accent-color: #ffff00;
+    --glow-color: var(--primary-color);
+}
+
+[data-theme="green"] {
+    --primary-color: #00ff80;
+    --secondary-color: #ff8000;
+    --accent-color: #8000ff;
+    --glow-color: var(--primary-color);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Share Tech Mono', monospace;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a{
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+li {
+    list-style: none;
+}
+
+/* Navigation */
+.navbar{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    border-bottom: 1px solid var(--primary-color);
+}
+
+.nav-container{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.nav-logo{
+    font-family: 'Orbitron', monospace;
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2rem;
+}
+
+.hamburger{
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.bar{
+    width: 25px;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 3px;
+}
+
+/* Glitch */
+.glitch{
+    position: relative;
+}
+
+.glitch::before, .glitch::after{
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch::before{
+    z-index: -1;
+    color: var(--primary-color);
+    animation: glitch-1 2s infinite;
+}
+
+.glitch::after{
+    z-index: -2;
+    color: var(--secondary-color);
+    animation: glitch-2 2s infinite;
+}
+
+@keyframes glitch-1{
+    0%, 14%, 15%, 49%, 50%, 99%, 100%{
+        transform: translate(0);
+    }
+    15%, 49% {
+        transform: translate(-2px, 2px);
+    }
+}
+
+@keyframes glitch-2 {
+    0%, 20%, 21%, 62%, 63%, 99%, 100%{
+        transform: translate(0);
+    }
+    21%, 62%{
+        transform: translate(2px, -2px);
+    }
+}
+
+@media (max-width: 768px) {
+    .hamburger{
+        display: flex;
+    }
+
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        background-color: var(--bg-color);
+        padding: 2rem 0;
+        border-top: 1px solid var(--primary-color);
+        transition: .3s;
+    }
+
+    .nav-menu.active{
+        left: 0;
+    }
+}
